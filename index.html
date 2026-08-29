@@ -2,252 +2,256 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Instagram Account Recovery</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:#090d17;
+  color:#f4f7ff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  padding:18px
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #090d17;
-  color: #f4f7ff;
-  font-family: Arial, sans-serif;
-  padding: 20px;
+.app{
+  width:min(460px,100%);
+  margin:auto
 }
 
-.container {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
+.header{
+  text-align:center;
+  padding:18px 0 22px
 }
 
-.header {
-  text-align: center;
-  padding: 20px 0;
+.logo{
+  font-size:29px;
+  font-weight:900;
+  color:#54adff;
+  letter-spacing:-.7px
 }
 
-.logo {
-  font-size: 29px;
-  font-weight: 900;
-  color: #54adff;
+.sub{
+  color:#929db3;
+  font-size:13px;
+  margin-top:6px
 }
 
-.subtitle {
-  margin-top: 6px;
-  color: #909cb3;
-  font-size: 13px;
+.card{
+  background:#171e31;
+  border:1px solid #2b3957;
+  border-radius:20px;
+  padding:21px;
+  box-shadow:0 20px 60px rgba(0,0,0,.45)
 }
 
-.card {
-  background: #171e31;
-  border: 1px solid #2c3a58;
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+.progress{
+  display:flex;
+  gap:6px;
+  margin-bottom:22px
 }
 
-.progress {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 25px;
+.progress span{
+  height:4px;
+  flex:1;
+  background:#2c3852;
+  border-radius:8px
 }
 
-.progress div {
-  flex: 1;
-  height: 4px;
-  background: #2c3750;
-  border-radius: 10px;
+.progress span.on{
+  background:#ffc94d
 }
 
-.progress .active {
-  background: #ffc94d;
+.screen{
+  display:none
 }
 
-.screen {
-  display: none;
+.screen.active{
+  display:block
 }
 
-.screen.active {
-  display: block;
+h2{
+  margin:0 0 8px;
+  font-size:21px
 }
 
-h2 {
-  margin: 0 0 8px;
-  font-size: 21px;
+.desc{
+  color:#a6b1c5;
+  font-size:13px;
+  line-height:1.55;
+  margin:0 0 18px
 }
 
-.description {
-  color: #a6b1c5;
-  font-size: 13px;
-  line-height: 1.55;
-  margin-bottom: 20px;
+.info{
+  background:#101729;
+  border:1px solid #33415e;
+  border-radius:12px;
+  padding:13px;
+  margin:10px 0
 }
 
-.info {
-  background: #101729;
-  border: 1px solid #33415e;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 18px;
+.info small{
+  display:block;
+  color:#8795ad;
+  font-size:11px;
+  margin-bottom:5px
 }
 
-.info-title {
-  font-size: 12px;
-  color: #8fa0bc;
-  margin-bottom: 6px;
+.info strong{
+  font-size:15px
 }
 
-.info-value {
-  font-size: 16px;
-  font-weight: 800;
-}
-
-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 800;
-  margin: 15px 0 7px;
-  color: #dce4f2;
+label{
+  display:block;
+  margin:15px 0 7px;
+  font-size:12px;
+  font-weight:800;
+  color:#dce4f2
 }
 
 input,
-textarea {
-  width: 100%;
-  padding: 14px;
-  border-radius: 11px;
-  border: 1px solid #405170;
-  background: #304267;
-  color: white;
-  font-size: 14px;
-  outline: none;
+textarea{
+  width:100%;
+  border:1px solid #405170;
+  border-radius:11px;
+  background:#304267;
+  color:#fff;
+  padding:13px;
+  font-size:14px;
+  outline:none
 }
 
-textarea {
-  min-height: 130px;
-  background: #101729;
-  resize: vertical;
+textarea{
+  min-height:130px;
+  background:#101729;
+  resize:vertical
 }
 
 button,
-.button {
-  width: 100%;
-  display: block;
-  border: 0;
-  border-radius: 11px;
-  padding: 14px;
-  margin-top: 16px;
-  background: #ffc94d;
-  color: #171717;
-  font-size: 15px;
-  font-weight: 900;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
+.button{
+  width:100%;
+  display:block;
+  border:0;
+  border-radius:11px;
+  padding:14px;
+  margin-top:15px;
+  background:#ffc94d;
+  color:#171717;
+  font-size:15px;
+  font-weight:900;
+  text-align:center;
+  text-decoration:none;
+  cursor:pointer
 }
 
-.secondary {
-  background: #293650;
-  color: white;
+.secondary{
+  background:#293650;
+  color:#fff
 }
 
-.blue {
-  background: #247dcc;
-  color: white;
+.blue{
+  background:#247dcc;
+  color:#fff
 }
 
-.appeal {
-  background: #0e1727;
-  border: 1px solid #31425f;
-  border-radius: 12px;
-  padding: 15px;
-  color: #b7c2d5;
-  font-size: 12px;
-  line-height: 1.6;
-  white-space: pre-wrap;
+.green{
+  background:#287a5a;
+  color:#fff
 }
 
-.warning {
-  margin-top: 15px;
-  padding: 13px;
-  border-radius: 11px;
-  background: #101729;
-  border: 1px solid #33415e;
-  color: #aeb9cc;
-  font-size: 12px;
-  line-height: 1.5;
+.appeal{
+  background:#0d1626;
+  border:1px solid #31425f;
+  border-radius:12px;
+  padding:14px;
+  color:#c0cada;
+  font-size:12px;
+  line-height:1.65;
+  white-space:pre-wrap;
+  user-select:text
 }
 
-.footer {
-  text-align: center;
-  color: #68748a;
-  font-size: 10px;
-  margin-top: 15px;
+.notice{
+  background:#101729;
+  border:1px solid #33415e;
+  border-radius:12px;
+  padding:13px;
+  margin-top:14px;
+  color:#aeb9cc;
+  font-size:12px;
+  line-height:1.55
+}
+
+.success{
+  display:none;
+  margin-top:10px;
+  text-align:center;
+  color:#7fe0aa;
+  font-size:12px;
+  font-weight:700
+}
+
+.footer{
+  text-align:center;
+  color:#69758c;
+  font-size:10px;
+  margin-top:14px;
+  line-height:1.5
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
   <div class="header">
     <div class="logo">Account Recovery</div>
-    <div class="subtitle">
-      Instagram Recovery Assistant
-    </div>
+    <div class="sub">Instagram Recovery Assistant</div>
   </div>
 
   <div class="card">
 
     <div class="progress">
-      <div id="bar1" class="active"></div>
-      <div id="bar2"></div>
-      <div id="bar3"></div>
+      <span id="p1" class="on"></span>
+      <span id="p2"></span>
+      <span id="p3"></span>
+      <span id="p4"></span>
     </div>
 
 
     <!-- STEP 1 -->
 
-    <section id="screen1" class="screen active">
+    <section id="s1" class="screen active">
 
-      <h2>Instagram Account Recovery</h2>
+      <h2>Instagram Disabled Account</h2>
 
-      <p class="description">
-        We'll help you prepare your account recovery request.
+      <p class="desc">
+        Prepare your information and follow Instagram's
+        official review process.
       </p>
 
       <div class="info">
-
-        <div class="info-title">
-          Platform
-        </div>
-
-        <div class="info-value">
-          Instagram
-        </div>
-
+        <small>Platform</small>
+        <strong>Instagram</strong>
       </div>
-
 
       <div class="info">
-
-        <div class="info-title">
-          Service
-        </div>
-
-        <div class="info-value">
-          Disabled Account
-        </div>
-
+        <small>Service</small>
+        <strong>Disabled Account</strong>
       </div>
 
+      <div class="notice">
+        This assistant cannot directly restore an account
+        or bypass Instagram's systems. It prepares your
+        request and takes you to Instagram's official
+        recovery flow.
+      </div>
 
-      <button id="next1">
+      <button type="button" data-go="2">
         Continue
       </button>
 
@@ -256,18 +260,18 @@ button,
 
     <!-- STEP 2 -->
 
-    <section id="screen2" class="screen">
+    <section id="s2" class="screen">
 
-      <h2>Account Details</h2>
+      <h2>Account Information</h2>
 
-      <p class="description">
-        Enter basic information about the account.
-        Do not enter your password or security codes.
+      <p class="desc">
+        Enter only basic information. Never enter your
+        password, 2FA code, recovery code, session cookie,
+        or login token.
       </p>
 
-
       <label>
-        Instagram Username
+        Instagram username
       </label>
 
       <input
@@ -276,36 +280,33 @@ button,
         autocomplete="off"
       >
 
-
       <label>
-        Email or Phone
+        Email or phone connected to the account
       </label>
 
       <input
         id="contact"
-        placeholder="Email or phone connected to the account"
+        placeholder="Email or phone"
         autocomplete="off"
       >
 
-
       <label>
-        What happened?
+        Date the account was disabled
       </label>
 
-      <textarea
-        id="details"
-        placeholder="Explain what happened to your Instagram account..."
-      ></textarea>
+      <input
+        id="date"
+        type="date"
+      >
 
-
-      <button id="generate">
+      <button type="button" data-go="3">
         Continue
       </button>
 
-
       <button
+        type="button"
         class="secondary"
-        id="back"
+        data-go="1"
       >
         Back
       </button>
@@ -315,47 +316,116 @@ button,
 
     <!-- STEP 3 -->
 
-    <section id="screen3" class="screen">
+    <section id="s3" class="screen">
 
-      <h2>Recovery Request</h2>
+      <h2>Explain What Happened</h2>
 
-      <p class="description">
-        Your recovery request has been prepared.
+      <p class="desc">
+        Keep the explanation factual and short.
       </p>
 
+      <label>
+        What happened?
+      </label>
 
-      <div class="appeal" id="appeal"></div>
+      <textarea
+        id="details"
+        placeholder="Example: My Instagram account was disabled and I believe the decision was made in error. I have reviewed the rules and would like my account to be reviewed."
+      ></textarea>
+
+      <button
+        type="button"
+        data-action="generate"
+      >
+        Create Recovery Request
+      </button>
+
+      <button
+        type="button"
+        class="secondary"
+        data-go="2"
+      >
+        Back
+      </button>
+
+    </section>
+
+
+    <!-- STEP 4 -->
+
+    <section id="s4" class="screen">
+
+      <h2>Recovery Request Ready</h2>
+
+      <p class="desc">
+        Copy your request, then open Instagram and use
+        the review or recovery option Instagram presents
+        for your account.
+      </p>
+
+      <div
+        id="appeal"
+        class="appeal"
+      ></div>
+
+
+      <button
+        type="button"
+        id="copy"
+        class="green"
+      >
+        Copy Appeal
+      </button>
+
+      <div
+        id="copied"
+        class="success"
+      >
+        ✓ Appeal copied to clipboard
+      </div>
 
 
       <a
         class="button blue"
+        href="https://www.instagram.com/accounts/login/"
+        target="_blank"
+        rel="noopener"
+      >
+        Open Instagram
+      </a>
+
+
+      <a
+        class="button secondary"
         href="https://www.instagram.com/hacked/"
         target="_blank"
         rel="noopener"
       >
-        Continue to Instagram Recovery
+        Open Instagram Hacked Recovery
       </a>
 
 
-      <div class="warning">
+      <div class="notice">
 
-        <b>Important:</b><br><br>
+        <strong>What happens next?</strong>
 
-        Instagram/Meta makes the final decision about
-        whether an account is restored.
+        <br><br>
 
-        This tool does not bypass Instagram's security
-        or enforcement systems.
+        If Instagram shows a review, appeal, or verification
+        option when you log in, follow that process and use
+        the request above if appropriate.
 
-        Never give a third-party recovery tool your
-        password, session cookie, 2FA code, or recovery code.
+        If Instagram does not provide an appeal option,
+        this assistant cannot create one or bypass that
+        restriction.
 
       </div>
 
 
       <button
+        type="button"
         class="secondary"
-        id="restart"
+        data-go="1"
       >
         Start Over
       </button>
@@ -366,7 +436,7 @@ button,
 
 
   <div class="footer">
-    Recovery Assistant • Legitimate recovery only
+    Recovery Assistant • Legitimate account recovery only
   </div>
 
 </div>
@@ -374,125 +444,197 @@ button,
 
 <script>
 
-function showScreen(number) {
+(function(){
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(function(screen) {
+  function show(number){
 
-      screen.classList.remove("active");
+    document
+      .querySelectorAll(".screen")
+      .forEach(function(screen){
+
+        screen.classList.remove("active");
+
+      });
+
+
+    const target =
+      document.getElementById("s" + number);
+
+
+    if(target){
+
+      target.classList.add("active");
+
+    }
+
+
+    for(let i = 1; i <= 4; i++){
+
+      document
+        .getElementById("p" + i)
+        .classList.toggle(
+          "on",
+          i <= number
+        );
+
+    }
+
+
+    window.scrollTo(0,0);
+
+  }
+
+
+  document.addEventListener(
+    "click",
+    function(event){
+
+      const goButton =
+        event.target.closest("[data-go]");
+
+
+      if(goButton){
+
+        event.preventDefault();
+
+        show(
+          Number(
+            goButton.getAttribute("data-go")
+          )
+        );
+
+        return;
+
+      }
+
+
+      const action =
+        event.target.closest("[data-action]");
+
+
+      if(
+        action &&
+        action.getAttribute("data-action") === "generate"
+      ){
+
+        event.preventDefault();
+
+
+        const username =
+          document
+            .getElementById("username")
+            .value
+            .trim()
+          || "@yourusername";
+
+
+        const contact =
+          document
+            .getElementById("contact")
+            .value
+            .trim();
+
+
+        const date =
+          document
+            .getElementById("date")
+            .value;
+
+
+        const details =
+          document
+            .getElementById("details")
+            .value
+            .trim()
+          ||
+          "My Instagram account was disabled and I believe the decision was made in error.";
+
+
+        const dateText =
+          date
+          ? date
+          : "the date shown on my account";
+
+
+        const contactText =
+          contact
+          ? contact
+          : "the contact information associated with my account";
+
+
+        const message =
+`Hello Meta Support,
+
+My Instagram account (${username}) was disabled on ${dateText}.
+
+Contact information associated with the account: ${contactText}
+
+${details}
+
+I respectfully request that my account be reviewed. I am willing to complete any verification required by Meta and comply with Instagram's policies.
+
+Thank you for taking the time to review my request.`;
+
+
+        document
+          .getElementById("appeal")
+          .textContent = message;
+
+
+        document
+          .getElementById("copied")
+          .style.display = "none";
+
+
+        show(4);
+
+      }
 
     });
 
 
   document
-    .getElementById("screen" + number)
-    .classList.add("active");
+    .getElementById("copy")
+    .addEventListener(
+      "click",
+      async function(){
+
+        const text =
+          document
+            .getElementById("appeal")
+            .textContent;
 
 
-  for (let i = 1; i <= 3; i++) {
+        try{
 
-    document
-      .getElementById("bar" + i)
-      .classList.toggle(
-        "active",
-        i <= number
-      );
+          await navigator.clipboard.writeText(text);
 
-  }
+        }catch(error){
 
+          const area =
+            document.createElement("textarea");
 
-  window.scrollTo(0, 0);
+          area.value = text;
 
-}
+          document.body.appendChild(area);
 
+          area.select();
 
-/* STEP 1 */
+          document.execCommand("copy");
 
-document
-  .getElementById("next1")
-  .addEventListener("click", function() {
+          area.remove();
 
-    showScreen(2);
-
-  });
+        }
 
 
-/* STEP 2 */
+        document
+          .getElementById("copied")
+          .style.display = "block";
 
-document
-  .getElementById("generate")
-  .addEventListener("click", function() {
+      }
+    );
 
-    const username =
-      document
-        .getElementById("username")
-        .value
-        .trim() || "my Instagram account";
-
-
-    const details =
-      document
-        .getElementById("details")
-        .value
-        .trim() ||
-        "I believe my Instagram account was disabled by mistake.";
-
-
-    const message =
-`Hello Meta Support,
-
-My Instagram account (${username}) was disabled.
-
-${details}
-
-I respectfully request that my account be reviewed. I am willing to complete any verification required by Meta.
-
-Thank you for taking the time to review my request.`;
-
-
-    document
-      .getElementById("appeal")
-      .textContent = message;
-
-
-    showScreen(3);
-
-  });
-
-
-/* BACK */
-
-document
-  .getElementById("back")
-  .addEventListener("click", function() {
-
-    showScreen(1);
-
-  });
-
-
-/* START OVER */
-
-document
-  .getElementById("restart")
-  .addEventListener("click", function() {
-
-    document
-      .getElementById("username")
-      .value = "";
-
-    document
-      .getElementById("contact")
-      .value = "";
-
-    document
-      .getElementById("details")
-      .value = "";
-
-    showScreen(1);
-
-  });
+})();
 
 </script>
 
