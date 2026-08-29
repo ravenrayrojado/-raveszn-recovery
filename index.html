@@ -1,359 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Recovery</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #0a0f1c;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 430px;
-    }
-
-    .logo {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 800;
-      color: #55aaff;
-      margin-bottom: 20px;
-    }
-
-    .card {
-      background: #171e30;
-      border: 1px solid #2b3854;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.45);
-    }
-
-    .progress {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 25px;
-    }
-
-    .progress div {
-      height: 4px;
-      flex: 1;
-      border-radius: 10px;
-      background: #303b55;
-    }
-
-    .progress .active {
-      background: #ffc94d;
-    }
-
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    h2 {
-      margin: 0 0 8px;
-      font-size: 21px;
-    }
-
-    .description {
-      color: #9faac0;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin: 15px 0 7px;
-      font-size: 12px;
-      font-weight: bold;
-      color: #dce4f2;
-    }
-
-    select,
-    input,
-    textarea {
-      width: 100%;
-      padding: 14px;
-      border-radius: 11px;
-      border: 1px solid #405170;
-      background: #304267;
-      color: white;
-      font-size: 14px;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-      background: #101729;
-    }
-
-    button,
-    .button-link {
-      width: 100%;
-      display: block;
-      padding: 14px;
-      margin-top: 16px;
-      border: 0;
-      border-radius: 11px;
-      background: #ffc94d;
-      color: #171717;
-      font-size: 15px;
-      font-weight: 800;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .secondary {
-      background: #293650;
-      color: white;
-    }
-
-    .blue {
-      background: #247dcc;
-      color: white;
-    }
-
-    .choice {
-      display: flex;
-      gap: 10px;
-      padding: 13px;
-      margin: 9px 0;
-      border-radius: 12px;
-      background: #101729;
-      border: 1px solid #303e5b;
-    }
-
-    .choice input {
-      width: auto;
-      margin-top: 3px;
-    }
-
-    .choice b {
-      display: block;
-      font-size: 13px;
-    }
-
-    .choice span {
-      display: block;
-      color: #909cb2;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .appeal {
-      background: #0e1727;
-      border: 1px solid #31425f;
-      border-radius: 12px;
-      padding: 14px;
-      color: #b7c2d5;
-      font-size: 12px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-    }
-
-    .warning {
-      margin-top: 15px;
-      padding: 13px;
-      border-radius: 11px;
-      background: #101729;
-      border: 1px solid #33415e;
-      color: #aeb9cc;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .footer {
-      text-align: center;
-      color: #68748a;
-      font-size: 10px;
-      margin-top: 15px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RAVESZN Recovery Assistant</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#090d17;color:#f4f7ff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:18px}
+.app{width:min(460px,100%);margin:auto}
+.header{text-align:center;padding:18px 0 20px}
+.logo{font-size:27px;font-weight:900;color:#54adff;letter-spacing:-.8px}
+.sub{color:#8f9ab0;font-size:12px;margin-top:5px}
+.card{background:#171e31;border:1px solid #293650;border-radius:20px;padding:20px;box-shadow:0 20px 60px #0008}
+.progress{display:flex;gap:6px;margin-bottom:20px}
+.bar{height:4px;flex:1;background:#2b3650;border-radius:9px}
+.bar.on{background:#ffc94d}
+h2{font-size:20px;margin:0 0 7px}
+.desc{color:#aab5c9;font-size:13px;line-height:1.5;margin:0 0 18px}
+label{display:block;font-size:12px;font-weight:800;color:#dce3ef;margin:15px 0 7px}
+select,input,textarea{width:100%;border:1px solid #3c4d70;background:#2f4168;color:#fff;border-radius:11px;padding:13px;font-size:14px;outline:none}
+textarea{min-height:120px;background:#11182a;resize:vertical}
+button{width:100%;border:0;border-radius:11px;padding:14px;margin-top:16px;background:#ffc94d;color:#181711;font-weight:900;font-size:15px;cursor:pointer}
+button.secondary{background:#293650;color:#fff}
+button.link,.button.link{background:#1f78c9;color:#fff;text-align:center;text-decoration:none;display:block}
+.screen{display:none}.screen.active{display:block}
+.alert{background:#11182a;border:1px solid #33415e;border-radius:12px;padding:12px;margin-top:15px;color:#aeb9cc;font-size:12px;line-height:1.5}
+.choice{display:flex;gap:10px;align-items:flex-start;background:#11182a;border:1px solid #303e5b;border-radius:12px;padding:13px;margin:9px 0;cursor:pointer}
+.choice input{width:auto;margin-top:3px}
+.choice b{display:block;font-size:13px}
+.choice span{display:block;color:#929db2;font-size:11px;margin-top:3px}
+.result{background:#0e1727;border:1px solid #31425f;border-radius:12px;padding:14px;margin-top:14px}
+.result b{font-size:13px}
+.result p{font-size:12px;color:#aab5c8;line-height:1.5}
+a{color:#69baff;text-decoration:none}
+.footer{text-align:center;color:#69758c;font-size:10px;margin-top:14px}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-  <div class="logo">
-    Account Recovery
+  <div class="header">
+    <div class="logo">Account Recovery</div>
+    <div class="sub">Recovery Assistant</div>
   </div>
 
   <div class="card">
 
     <div class="progress">
-      <div id="bar1" class="active"></div>
-      <div id="bar2"></div>
-      <div id="bar3"></div>
-      <div id="bar4"></div>
+      <div id="p1" class="bar on"></div>
+      <div id="p2" class="bar"></div>
+      <div id="p3" class="bar"></div>
+      <div id="p4" class="bar"></div>
     </div>
 
 
-    <!-- SCREEN 1 -->
+    <!-- STEP 1 -->
 
-    <div id="screen1" class="screen active">
+    <section id="s1" class="screen active">
 
       <h2>Select Options</h2>
 
-      <p class="description">
+      <p class="desc">
         Choose the platform and service you need help with.
       </p>
 
       <label>Category</label>
 
-      <select>
-        <option>Facebook</option>
+      <select id="category">
+        <option value="facebook">Facebook</option>
+        <option value="instagram">Instagram</option>
       </select>
 
       <label>Service</label>
 
       <select id="service">
-        <option value="disabled">
-          Disabled Account
-        </option>
-
-        <option value="hacked">
-          Hacked Account
-        </option>
-
-        <option value="access">
-          Can't Access Account
-        </option>
+        <option value="disabled">Disabled Account</option>
+        <option value="hacked">Hacked Account</option>
+        <option value="access">Can't Access Account</option>
       </select>
 
-      <button id="next1">
+      <button type="button" data-go="2">
         Next
       </button>
 
-    </div>
+    </section>
 
 
-    <!-- SCREEN 2 -->
+    <!-- STEP 2 -->
 
-    <div id="screen2" class="screen">
+    <section id="s2" class="screen">
 
       <h2>What happened?</h2>
 
-      <p class="description">
-        Tell us which situation best describes your account.
+      <p class="desc">
+        Choose the situation that best describes your account.
       </p>
 
+      <label>Situation</label>
+
       <div class="choice">
-        <input
-          type="radio"
-          name="situation"
-          value="mistake"
-          checked
-        >
+        <input type="radio" name="situation" value="mistake" checked>
 
         <div>
-          <b>I believe it was a mistake</b>
-
+          <b>I believe the disablement was a mistake</b>
           <span>
-            I want to request a review if Facebook provides one.
+            I want to request a review if the platform provides one.
           </span>
         </div>
       </div>
 
 
       <div class="choice">
-
-        <input
-          type="radio"
-          name="situation"
-          value="hacked"
-        >
+        <input type="radio" name="situation" value="hacked">
 
         <div>
           <b>I think my account was hacked</b>
-
           <span>
-            Someone changed my account information or I lost access.
+            I lost access or someone changed my account information.
           </span>
         </div>
-
       </div>
 
 
       <div class="choice">
-
-        <input
-          type="radio"
-          name="situation"
-          value="other"
-        >
+        <input type="radio" name="situation" value="other">
 
         <div>
-          <b>Something else</b>
-
+          <b>Something else happened</b>
           <span>
             My situation doesn't match the options above.
           </span>
         </div>
-
       </div>
 
 
-      <button id="next2">
+      <button type="button" data-go="3">
         Continue
       </button>
 
-      <button
-        class="secondary"
-        id="back2"
-      >
+      <button type="button" class="secondary" data-go="1">
         Back
       </button>
 
-    </div>
+    </section>
 
 
-    <!-- SCREEN 3 -->
+    <!-- STEP 3 -->
 
-    <div id="screen3" class="screen">
+    <section id="s3" class="screen">
 
-      <h2>Account Details</h2>
+      <h2>Prepare Your Appeal</h2>
 
-      <p class="description">
-        Enter basic information to prepare your recovery request.
-        Never enter your password or security codes.
+      <p class="desc">
+        Explain what happened clearly. Never enter passwords,
+        2FA codes, cookies, or recovery codes.
       </p>
 
 
-      <label>Facebook Name</label>
+      <label>Account Name</label>
 
       <input
-        id="accountName"
-        placeholder="Your Facebook name"
+        id="name"
+        placeholder="Your account name"
       >
 
 
-      <label>Profile URL</label>
+      <label>Profile URL (optional)</label>
 
       <input
-        id="profileUrl"
-        placeholder="https://www.facebook.com/..."
+        id="profile"
+        placeholder="https://..."
       >
 
 
@@ -365,40 +183,43 @@
       ></textarea>
 
 
-      <button id="generate">
+      <button type="button" data-action="generate">
         Generate Appeal
       </button>
 
-      <button
-        class="secondary"
-        id="back3"
-      >
+      <button type="button" class="secondary" data-go="2">
         Back
       </button>
 
-    </div>
+    </section>
 
 
-    <!-- SCREEN 4 -->
+    <!-- STEP 4 -->
 
-    <div id="screen4" class="screen">
+    <section id="s4" class="screen">
 
-      <h2>Recovery Plan</h2>
+      <h2>Your Recovery Plan</h2>
 
-      <p class="description">
-        Your appeal draft is ready. Use it when communicating
-        through an official Facebook/Meta recovery or review flow.
+      <p class="desc">
+        Your appeal draft is ready. Use it with the official
+        recovery or review process for the platform you selected.
       </p>
 
 
-      <div
-        id="appeal"
-        class="appeal"
-      ></div>
+      <div class="result">
 
+        <b>Appeal Draft</b>
+
+        <p id="appeal"></p>
+
+      </div>
+
+
+      <!-- FACEBOOK -->
 
       <a
-        class="button-link blue"
+        id="facebookRecovery"
+        class="button link"
         href="https://www.facebook.com/recover/initiate"
         target="_blank"
         rel="noopener"
@@ -408,24 +229,39 @@
 
 
       <a
-        class="button-link blue"
+        id="facebookHacked"
+        class="button link"
         href="https://www.facebook.com/hacked"
         target="_blank"
         rel="noopener"
       >
-        Open Hacked Account Recovery
+        Open Facebook Hacked Recovery
       </a>
 
 
-      <div class="warning">
+      <!-- INSTAGRAM -->
+
+      <a
+        id="instagramRecovery"
+        class="button link"
+        href="https://www.instagram.com/hacked/"
+        target="_blank"
+        rel="noopener"
+        style="display:none"
+      >
+        Open Instagram Recovery
+      </a>
+
+
+      <div class="alert">
 
         <b>Important:</b>
 
-        Meta makes the final decision about whether
-        an account is restored.
+        Meta makes the final decision about whether an
+        account is restored.
 
-        This tool does not bypass Facebook's security
-        or enforcement systems.
+        This tool does not bypass platform security or
+        enforcement systems.
 
         Never give a third-party tool your password,
         session cookie, 2FA code, or recovery code.
@@ -434,18 +270,19 @@
 
 
       <button
+        type="button"
         class="secondary"
-        id="restart"
+        data-go="1"
       >
         Start Over
       </button>
 
-    </div>
+    </section>
 
   </div>
 
   <div class="footer">
-    Recovery Assistant • For legitimate account recovery only
+    Recovery Assistant • Legitimate recovery only
   </div>
 
 </div>
@@ -453,117 +290,182 @@
 
 <script>
 
-function showScreen(number) {
+(function () {
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(function(screen) {
-
-      screen.classList.remove("active");
-
-    });
-
-
-  document
-    .getElementById("screen" + number)
-    .classList.add("active");
-
-
-  for (let i = 1; i <= 4; i++) {
+  function go(number) {
 
     document
-      .getElementById("bar" + i)
-      .classList.toggle(
-        "active",
-        i <= number
-      );
+      .querySelectorAll(".screen")
+      .forEach(function(screen) {
+
+        screen.classList.remove("active");
+
+      });
+
+
+    const target =
+      document.getElementById("s" + number);
+
+    if (target) {
+
+      target.classList.add("active");
+
+    }
+
+
+    for (let i = 1; i <= 4; i++) {
+
+      const bar =
+        document.getElementById("p" + i);
+
+      if (bar) {
+
+        bar.classList.toggle(
+          "on",
+          i <= number
+        );
+
+      }
+
+    }
+
+    window.scrollTo(0, 0);
 
   }
 
-  window.scrollTo(0, 0);
-}
+
+  function updatePlatform() {
+
+    const category =
+      document.getElementById("category").value;
+
+    const facebookRecovery =
+      document.getElementById("facebookRecovery");
+
+    const facebookHacked =
+      document.getElementById("facebookHacked");
+
+    const instagramRecovery =
+      document.getElementById("instagramRecovery");
 
 
-document
-  .getElementById("next1")
-  .addEventListener("click", function() {
+    if (category === "instagram") {
 
-    showScreen(2);
+      facebookRecovery.style.display = "none";
 
-  });
+      facebookHacked.style.display = "none";
 
+      instagramRecovery.style.display = "block";
 
-document
-  .getElementById("next2")
-  .addEventListener("click", function() {
+    } else {
 
-    showScreen(3);
+      facebookRecovery.style.display = "block";
 
-  });
+      facebookHacked.style.display = "block";
 
+      instagramRecovery.style.display = "none";
 
-document
-  .getElementById("back2")
-  .addEventListener("click", function() {
+    }
 
-    showScreen(1);
-
-  });
+  }
 
 
-document
-  .getElementById("back3")
-  .addEventListener("click", function() {
+  document.addEventListener(
+    "click",
+    function(event) {
 
-    showScreen(2);
+      const goButton =
+        event.target.closest("[data-go]");
 
-  });
+      if (goButton) {
+
+        event.preventDefault();
+
+        go(
+          Number(
+            goButton.getAttribute("data-go")
+          )
+        );
+
+        return;
+
+      }
 
 
-document
-  .getElementById("generate")
-  .addEventListener("click", function() {
+      const action =
+        event.target.closest("[data-action]");
 
-    const name =
-      document
-        .getElementById("accountName")
-        .value
-        .trim() || "my Facebook account";
+      if (
+        action &&
+        action.getAttribute("data-action") === "generate"
+      ) {
 
-    const details =
-      document
-        .getElementById("details")
-        .value
-        .trim() ||
-        "I believe my account was disabled by mistake.";
+        event.preventDefault();
 
-    const message =
+
+        const name =
+          document
+            .getElementById("name")
+            .value
+            .trim()
+          || "my account";
+
+
+        const details =
+          document
+            .getElementById("details")
+            .value
+            .trim()
+          || "I believe my account was disabled by mistake.";
+
+
+        const category =
+          document
+            .getElementById("category")
+            .value;
+
+
+        const platform =
+          category === "instagram"
+            ? "Instagram"
+            : "Facebook";
+
+
+        const message =
 `Hello Meta Support,
 
-My Facebook account (${name}) was disabled.
+My ${platform} account belonging to ${name} was disabled.
 
 ${details}
 
 I respectfully ask that my account be reviewed. I am willing to complete any verification required by Meta.
 
-Thank you for taking the time to review my request.`;
-
-    document
-      .getElementById("appeal")
-      .textContent = message;
-
-    showScreen(4);
-
-  });
+Thank you for reviewing my request.`;
 
 
-document
-  .getElementById("restart")
-  .addEventListener("click", function() {
+        document
+          .getElementById("appeal")
+          .textContent = message;
 
-    showScreen(1);
 
-  });
+        go(4);
+
+      }
+
+    });
+
+
+  document
+    .getElementById("category")
+    .addEventListener(
+      "change",
+      updatePlatform
+    );
+
+
+  updatePlatform();
+
+})();
 
 </script>
 
