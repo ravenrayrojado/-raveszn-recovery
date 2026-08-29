@@ -46,7 +46,7 @@ body {
   border: 1px solid #2b3957;
   border-radius: 20px;
   padding: 21px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
 }
 
 .progress {
@@ -113,8 +113,7 @@ label {
   color: #dce4f2;
 }
 
-input,
-textarea {
+input {
   width: 100%;
   border: 1px solid #405170;
   border-radius: 11px;
@@ -128,12 +127,6 @@ textarea {
 input[type="file"] {
   background: #101729;
   padding: 11px;
-}
-
-textarea {
-  min-height: 120px;
-  background: #101729;
-  resize: vertical;
 }
 
 button,
@@ -155,45 +148,28 @@ button,
 
 .secondary {
   background: #293650;
-  color: white;
+  color: #fff;
 }
 
 .blue {
   background: #247dcc;
-  color: white;
-}
-
-.green {
-  background: #287a5a;
-  color: white;
+  color: #fff;
 }
 
 .preview {
+  display: none;
   width: 100%;
   max-height: 190px;
   object-fit: contain;
   margin-top: 10px;
   border-radius: 10px;
   background: #0c1220;
-  display: none;
 }
 
 .status {
   font-size: 11px;
   color: #8996ad;
   margin-top: 7px;
-}
-
-.appeal {
-  background: #0d1626;
-  border: 1px solid #31425f;
-  border-radius: 12px;
-  padding: 14px;
-  color: #c0cada;
-  font-size: 12px;
-  line-height: 1.65;
-  white-space: pre-wrap;
-  user-select: text;
 }
 
 .notice {
@@ -207,13 +183,37 @@ button,
   line-height: 1.55;
 }
 
-.success {
-  display: none;
-  color: #7fe0aa;
+.checking {
   text-align: center;
+  padding: 28px 8px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 18px;
+  border: 4px solid #33415e;
+  border-top-color: #54adff;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.check-title {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.check-text {
   font-size: 12px;
-  font-weight: 700;
-  margin-top: 10px;
+  color: #9eabc0;
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
 .footer {
@@ -231,17 +231,27 @@ button,
 <div class="app">
 
   <div class="header">
-    <div class="logo">Account Recovery</div>
-    <div class="sub">Instagram Recovery Assistant</div>
+
+    <div class="logo">
+      Account Recovery
+    </div>
+
+    <div class="sub">
+      Instagram Recovery Assistant
+    </div>
+
   </div>
+
 
   <div class="card">
 
     <div class="progress">
+
       <span id="p1" class="on"></span>
       <span id="p2"></span>
       <span id="p3"></span>
       <span id="p4"></span>
+
     </div>
 
 
@@ -249,31 +259,57 @@ button,
 
     <section id="s1" class="screen active">
 
-      <h2>Instagram Disabled Account</h2>
+      <h2>
+        Instagram Disabled Account
+      </h2>
 
       <p class="desc">
-        Prepare the information Instagram may request
-        during its official review or verification process.
+        We'll help you prepare the information needed
+        for Instagram's official recovery or review process.
       </p>
 
-      <div class="info">
-        <small>Platform</small>
-        <strong>Instagram</strong>
-      </div>
 
       <div class="info">
-        <small>Service</small>
-        <strong>Disabled Account</strong>
+
+        <small>
+          Platform
+        </small>
+
+        <strong>
+          Instagram
+        </strong>
+
       </div>
+
+
+      <div class="info">
+
+        <small>
+          Service
+        </small>
+
+        <strong>
+          Disabled Account
+        </strong>
+
+      </div>
+
 
       <div class="notice">
-        You may be asked by Instagram or Meta to provide
-        account information, a screenshot, or verification
-        material. Only submit sensitive information through
-        an official Instagram or Meta page.
+
+        This assistant does not bypass Instagram security
+        or directly restore accounts.
+
+        Any verification must be completed through
+        Instagram or Meta's official process.
+
       </div>
 
-      <button type="button" data-go="2">
+
+      <button
+        type="button"
+        data-go="2"
+      >
         Continue
       </button>
 
@@ -284,13 +320,19 @@ button,
 
     <section id="s2" class="screen">
 
-      <h2>Account Information</h2>
+      <h2>
+        Account Information
+      </h2>
 
       <p class="desc">
-        Enter basic account information. Never enter your
-        password, 2FA code, recovery code, session cookie,
-        or login token.
+
+        Enter basic information only.
+
+        Never enter your password, 2FA code,
+        recovery code, session cookie, or login token.
+
       </p>
+
 
       <label>
         Instagram Username
@@ -298,9 +340,11 @@ button,
 
       <input
         id="username"
+        type="text"
         placeholder="@username"
         autocomplete="off"
       >
+
 
       <label>
         Email or Phone
@@ -308,9 +352,11 @@ button,
 
       <input
         id="contact"
+        type="text"
         placeholder="Email or phone connected to the account"
         autocomplete="off"
       >
+
 
       <label>
         Date Account Was Disabled
@@ -321,9 +367,14 @@ button,
         type="date"
       >
 
-      <button type="button" data-go="3">
+
+      <button
+        type="button"
+        data-go="3"
+      >
         Continue
       </button>
+
 
       <button
         type="button"
@@ -340,30 +391,38 @@ button,
 
     <section id="s3" class="screen">
 
-      <h2>Provide Evidence</h2>
+      <h2>
+        Verification Evidence
+      </h2>
 
       <p class="desc">
-        Add the evidence you have. The images are only
-        previewed in this browser and are not automatically
+
+        Add the screenshot and, only if requested by
+        Instagram or Meta, a verification photo.
+
+        The files are previewed locally and are not
         uploaded by this page.
+
       </p>
 
 
       <label>
-        Screenshot of Disabled Account
+        Disabled Account Screenshot
       </label>
 
       <input
-        id="disabledScreenshot"
+        id="screenshot"
         type="file"
         accept="image/*"
       >
 
+
       <img
         id="screenshotPreview"
         class="preview"
-        alt="Disabled account screenshot"
+        alt="Disabled account screenshot preview"
       >
+
 
       <div
         id="screenshotStatus"
@@ -374,7 +433,7 @@ button,
 
 
       <label>
-        Photo / Selfie for Verification
+        Verification Photo / Selfie
       </label>
 
       <input
@@ -384,11 +443,13 @@ button,
         capture="user"
       >
 
+
       <img
         id="selfiePreview"
         class="preview"
-        alt="Verification photo"
+        alt="Verification photo preview"
       >
+
 
       <div
         id="selfieStatus"
@@ -399,15 +460,22 @@ button,
 
 
       <div class="notice">
-        Only provide a selfie, ID, or other identity
-        material if Instagram or Meta's official process
-        specifically requests it.
+
+        Only provide identity material when the official
+        Instagram or Meta process asks for it.
+
+        This page does not transmit these files.
+
       </div>
 
 
-      <button type="button" data-go="4">
+      <button
+        type="button"
+        id="checkButton"
+      >
         Continue
       </button>
+
 
       <button
         type="button"
@@ -424,82 +492,22 @@ button,
 
     <section id="s4" class="screen">
 
-      <h2>Recovery Request Ready</h2>
+      <div class="checking">
 
-      <p class="desc">
-        Your recovery information is prepared. Use the
-        official Instagram recovery or review process
-        to submit the information Instagram requests.
-      </p>
+        <div class="spinner"></div>
 
+        <div class="check-title">
+          Checking your information…
+        </div>
 
-      <div
-        id="appeal"
-        class="appeal"
-      ></div>
+        <div class="check-text">
 
+          Preparing the official Instagram
+          recovery route.
 
-      <button
-        type="button"
-        id="copyAppeal"
-        class="green"
-      >
-        Copy Recovery Request
-      </button>
-
-      <div
-        id="copied"
-        class="success"
-      >
-        ✓ Recovery request copied
-      </div>
-
-
-      <a
-        class="button blue"
-        href="https://www.instagram.com/accounts/login/"
-        target="_blank"
-        rel="noopener"
-      >
-        Open Instagram
-      </a>
-
-
-      <a
-        class="button secondary"
-        href="https://www.instagram.com/hacked/"
-        target="_blank"
-        rel="noopener"
-      >
-        Open Instagram Recovery
-      </a>
-
-
-      <div class="notice">
-
-        <strong>Important:</strong>
-
-        <br><br>
-
-        This tool cannot directly restore an Instagram
-        account or bypass Meta's security systems.
-
-        Instagram/Meta makes the final decision.
-
-        Never give this tool or any third party your
-        Instagram password, session cookie, 2FA code,
-        recovery code, or login token.
+        </div>
 
       </div>
-
-
-      <button
-        type="button"
-        class="secondary"
-        data-go="1"
-      >
-        Start Over
-      </button>
 
     </section>
 
@@ -507,7 +515,13 @@ button,
 
 
   <div class="footer">
+
     Legitimate recovery assistance only
+
+    <br>
+
+    Never provide passwords or security codes.
+
   </div>
 
 </div>
@@ -558,18 +572,11 @@ button,
 
     window.scrollTo(0, 0);
 
-
-    if (number === 4) {
-
-      buildRecoveryRequest();
-
-    }
-
   }
 
 
   /* =========================
-     NAVIGATION BUTTONS
+     NAVIGATION
   ========================= */
 
   document.addEventListener(
@@ -601,7 +608,7 @@ button,
 
 
   /* =========================
-     IMAGE PREVIEW
+     IMAGE PREVIEWS
   ========================= */
 
   function setupPreview(
@@ -613,8 +620,10 @@ button,
     const input =
       document.getElementById(inputId);
 
+
     const preview =
       document.getElementById(previewId);
+
 
     const status =
       document.getElementById(statusId);
@@ -648,20 +657,20 @@ button,
           preview.style.display = "none";
 
           status.textContent =
-            "Please select an image file.";
+            "Please select an image.";
 
           return;
 
         }
 
 
-        const url =
+        preview.src =
           URL.createObjectURL(file);
 
 
-        preview.src = url;
+        preview.style.display =
+          "block";
 
-        preview.style.display = "block";
 
         status.textContent =
           file.name + " selected.";
@@ -673,7 +682,7 @@ button,
 
 
   setupPreview(
-    "disabledScreenshot",
+    "screenshot",
     "screenshotPreview",
     "screenshotStatus"
   );
@@ -687,153 +696,35 @@ button,
 
 
   /* =========================
-     BUILD RECOVERY REQUEST
-  ========================= */
-
-  function buildRecoveryRequest() {
-
-    const username =
-      document
-        .getElementById("username")
-        .value
-        .trim()
-      || "@yourusername";
-
-
-    const contact =
-      document
-        .getElementById("contact")
-        .value
-        .trim()
-      || "the contact information associated with my account";
-
-
-    const date =
-      document
-        .getElementById("date")
-        .value
-      || "the date shown on my account";
-
-
-    const screenshot =
-      document
-        .getElementById("disabledScreenshot")
-        .files[0];
-
-
-    const selfie =
-      document
-        .getElementById("selfie")
-        .files[0];
-
-
-    let evidence = [];
-
-
-    if (screenshot) {
-
-      evidence.push(
-        "Disabled-account screenshot prepared"
-      );
-
-    }
-
-
-    if (selfie) {
-
-      evidence.push(
-        "Verification photo prepared"
-      );
-
-    }
-
-
-    if (evidence.length === 0) {
-
-      evidence.push(
-        "No evidence selected"
-      );
-
-    }
-
-
-    const message =
-
-`Hello Meta Support,
-
-My Instagram account (${username}) was disabled on ${date}.
-
-Contact information associated with the account:
-${contact}
-
-I am requesting a review of the disablement.
-
-Evidence prepared:
-- ${evidence.join("\n- ")}
-
-I am willing to complete any verification required through Instagram or Meta's official process.
-
-Please review my account and let me know if any additional information is required.
-
-Thank you.`;
-
-
-    document
-      .getElementById("appeal")
-      .textContent = message;
-
-
-    document
-      .getElementById("copied")
-      .style.display = "none";
-
-  }
-
-
-  /* =========================
-     COPY REQUEST
+     CONTINUE TO RECOVERY
   ========================= */
 
   document
-    .getElementById("copyAppeal")
+    .getElementById("checkButton")
     .addEventListener(
       "click",
-      async function() {
+      function() {
 
-        const text =
-          document
-            .getElementById("appeal")
-            .textContent;
+        /*
+         * The files stay local to the browser.
+         * They are NOT uploaded automatically.
+         *
+         * Instagram/Meta must handle the actual
+         * account verification and recovery.
+         */
 
-
-        try {
-
-          await navigator.clipboard.writeText(text);
-
-        }
-
-        catch (error) {
-
-          const textarea =
-            document.createElement("textarea");
+        showScreen(4);
 
 
-          textarea.value = text;
+        setTimeout(
+          function() {
 
-          document.body.appendChild(textarea);
+            window.location.href =
+              "https://www.instagram.com/accounts/login/";
 
-          textarea.select();
-
-          document.execCommand("copy");
-
-          textarea.remove();
-
-        }
-
-
-        document
-          .getElementById("copied")
-          .style.display = "block";
+          },
+          1400
+        );
 
       }
     );
