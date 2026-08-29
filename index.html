@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Recovery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #0a0f1c;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #55aaff;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #171e30;
+      border: 1px solid #2b3854;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.45);
+    }
+
+    .progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 25px;
+    }
+
+    .progress div {
+      height: 4px;
+      flex: 1;
+      border-radius: 10px;
+      background: #303b55;
+    }
+
+    .progress .active {
+      background: #ffc94d;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .description {
+      color: #9faac0;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #dce4f2;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 11px;
+      border: 1px solid #405170;
+      background: #304267;
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      background: #101729;
+    }
+
+    button,
+    .button-link {
+      width: 100%;
+      display: block;
+      padding: 14px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 11px;
+      background: #ffc94d;
+      color: #171717;
+      font-size: 15px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .secondary {
+      background: #293650;
+      color: white;
+    }
+
+    .blue {
+      background: #247dcc;
+      color: white;
+    }
+
+    .choice {
+      display: flex;
+      gap: 10px;
+      padding: 13px;
+      margin: 9px 0;
+      border-radius: 12px;
+      background: #101729;
+      border: 1px solid #303e5b;
+    }
+
+    .choice input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    .choice b {
+      display: block;
+      font-size: 13px;
+    }
+
+    .choice span {
+      display: block;
+      color: #909cb2;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .appeal {
+      background: #0e1727;
+      border: 1px solid #31425f;
+      border-radius: 12px;
+      padding: 14px;
+      color: #b7c2d5;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .warning {
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 11px;
+      background: #101729;
+      border: 1px solid #33415e;
+      color: #aeb9cc;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      color: #68748a;
+      font-size: 10px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">
+    Account Recovery
+  </div>
+
+  <div class="card">
+
+    <div class="progress">
+      <div id="bar1" class="active"></div>
+      <div id="bar2"></div>
+      <div id="bar3"></div>
+      <div id="bar4"></div>
+    </div>
+
+
+    <!-- SCREEN 1 -->
+
+    <div id="screen1" class="screen active">
+
+      <h2>Select Options</h2>
+
+      <p class="description">
+        Choose the platform and service you need help with.
+      </p>
+
+      <label>Category</label>
+
+      <select>
+        <option>Facebook</option>
+      </select>
+
+      <label>Service</label>
+
+      <select id="service">
+        <option value="disabled">
+          Disabled Account
+        </option>
+
+        <option value="hacked">
+          Hacked Account
+        </option>
+
+        <option value="access">
+          Can't Access Account
+        </option>
+      </select>
+
+      <button id="next1">
+        Next
+      </button>
+
+    </div>
+
+
+    <!-- SCREEN 2 -->
+
+    <div id="screen2" class="screen">
+
+      <h2>What happened?</h2>
+
+      <p class="description">
+        Tell us which situation best describes your account.
+      </p>
+
+      <div class="choice">
+        <input
+          type="radio"
+          name="situation"
+          value="mistake"
+          checked
+        >
+
+        <div>
+          <b>I believe it was a mistake</b>
+
+          <span>
+            I want to request a review if Facebook provides one.
+          </span>
+        </div>
+      </div>
+
+
+      <div class="choice">
+
+        <input
+          type="radio"
+          name="situation"
+          value="hacked"
+        >
+
+        <div>
+          <b>I think my account was hacked</b>
+
+          <span>
+            Someone changed my account information or I lost access.
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="choice">
+
+        <input
+          type="radio"
+          name="situation"
+          value="other"
+        >
+
+        <div>
+          <b>Something else</b>
+
+          <span>
+            My situation doesn't match the options above.
+          </span>
+        </div>
+
+      </div>
+
+
+      <button id="next2">
+        Continue
+      </button>
+
+      <button
+        class="secondary"
+        id="back2"
+      >
+        Back
+      </button>
+
+    </div>
+
+
+    <!-- SCREEN 3 -->
+
+    <div id="screen3" class="screen">
+
+      <h2>Account Details</h2>
+
+      <p class="description">
+        Enter basic information to prepare your recovery request.
+        Never enter your password or security codes.
+      </p>
+
+
+      <label>Facebook Name</label>
+
+      <input
+        id="accountName"
+        placeholder="Your Facebook name"
+      >
+
+
+      <label>Profile URL</label>
+
+      <input
+        id="profileUrl"
+        placeholder="https://www.facebook.com/..."
+      >
+
+
+      <label>What happened?</label>
+
+      <textarea
+        id="details"
+        placeholder="Explain what happened to your account..."
+      ></textarea>
+
+
+      <button id="generate">
+        Generate Appeal
+      </button>
+
+      <button
+        class="secondary"
+        id="back3"
+      >
+        Back
+      </button>
+
+    </div>
+
+
+    <!-- SCREEN 4 -->
+
+    <div id="screen4" class="screen">
+
+      <h2>Recovery Plan</h2>
+
+      <p class="description">
+        Your appeal draft is ready. Use it when communicating
+        through an official Facebook/Meta recovery or review flow.
+      </p>
+
+
+      <div
+        id="appeal"
+        class="appeal"
+      ></div>
+
+
+      <a
+        class="button-link blue"
+        href="https://www.facebook.com/recover/initiate"
+        target="_blank"
+        rel="noopener"
+      >
+        Open Facebook Recovery
+      </a>
+
+
+      <a
+        class="button-link blue"
+        href="https://www.facebook.com/hacked"
+        target="_blank"
+        rel="noopener"
+      >
+        Open Hacked Account Recovery
+      </a>
+
+
+      <div class="warning">
+
+        <b>Important:</b>
+
+        Meta makes the final decision about whether
+        an account is restored.
+
+        This tool does not bypass Facebook's security
+        or enforcement systems.
+
+        Never give a third-party tool your password,
+        session cookie, 2FA code, or recovery code.
+
+      </div>
+
+
+      <button
+        class="secondary"
+        id="restart"
+      >
+        Start Over
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Recovery Assistant • For legitimate account recovery only
+  </div>
+
+</div>
+
+
+<script>
+
+function showScreen(number) {
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(function(screen) {
+
+      screen.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById("screen" + number)
+    .classList.add("active");
+
+
+  for (let i = 1; i <= 4; i++) {
+
+    document
+      .getElementById("bar" + i)
+      .classList.toggle(
+        "active",
+        i <= number
+      );
+
+  }
+
+  window.scrollTo(0, 0);
+}
+
+
+document
+  .getElementById("next1")
+  .addEventListener("click", function() {
+
+    showScreen(2);
+
+  });
+
+
+document
+  .getElementById("next2")
+  .addEventListener("click", function() {
+
+    showScreen(3);
+
+  });
+
+
+document
+  .getElementById("back2")
+  .addEventListener("click", function() {
+
+    showScreen(1);
+
+  });
+
+
+document
+  .getElementById("back3")
+  .addEventListener("click", function() {
+
+    showScreen(2);
+
+  });
+
+
+document
+  .getElementById("generate")
+  .addEventListener("click", function() {
+
+    const name =
+      document
+        .getElementById("accountName")
+        .value
+        .trim() || "my Facebook account";
+
+    const details =
+      document
+        .getElementById("details")
+        .value
+        .trim() ||
+        "I believe my account was disabled by mistake.";
+
+    const message =
+`Hello Meta Support,
+
+My Facebook account (${name}) was disabled.
+
+${details}
+
+I respectfully ask that my account be reviewed. I am willing to complete any verification required by Meta.
+
+Thank you for taking the time to review my request.`;
+
+    document
+      .getElementById("appeal")
+      .textContent = message;
+
+    showScreen(4);
+
+  });
+
+
+document
+  .getElementById("restart")
+  .addEventListener("click", function() {
+
+    showScreen(1);
+
+  });
+
+</script>
+
+</body>
+</html>
